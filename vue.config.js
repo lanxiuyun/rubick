@@ -1,9 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+const isProd = process.env.NODE_ENV === 'production';
+const devtool = isProd ? 'source-map' : 'eval-source-map';
 
 module.exports = {
   // transpileDependencies: ["fix-path"],
   configureWebpack: {
+    devtool,
     resolve: {
       alias: {
         '@': path.join(__dirname, './src'),
@@ -21,6 +24,12 @@ module.exports = {
       nodeIntegration: true,
       mainProcessFile: 'src/main/index.ts',
       mainProcessWatch: ['src/main'],
+      chainWebpackMainProcess: (config) => {
+        config.devtool(devtool);
+      },
+      chainWebpackRendererProcess: (config) => {
+        config.devtool(devtool);
+      },
       externals: [
         'pouchdb',
         'extract-file-icon',
