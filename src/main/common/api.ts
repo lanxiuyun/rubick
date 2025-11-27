@@ -274,6 +274,7 @@ class API extends DBInstance {
 
     if (process.platform === 'win32') {
       return copyFilesToWindowsClipboard(targetFiles);
+      return copyFilesToWindowsClipboard(targetFiles);
     }
 
     return false;
