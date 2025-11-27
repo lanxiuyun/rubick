@@ -127,6 +127,8 @@ export default () => {
       const pluginPath = path.resolve(baseDir, 'node_modules', name);
       pluginIndexPath = `file://${path.join(pluginPath, './', main)}`;
     }
+    const pluginPath = path.resolve(baseDir, 'node_modules', name);
+    pluginIndexPath = `file://${path.join(pluginPath, './', main)}`;
     const preload = getPreloadPath(plugin, preloadPath || pluginIndexPath);
 
     const ses = session.fromPartition('<' + name + '>');
